@@ -1,0 +1,14 @@
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\WindowsFormsApplication.exe.config
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\WindowsFormsApplication.pdb
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\itextsharp.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\itextsharp.pdfa.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\itextsharp.xtra.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\System.Data.SQLite.dll
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\x86\Debug\itextsharp.xml
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Form1.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.FormAdd.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.Properties.Resources.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\x86\Debug\WindowsFormsApplication.pdb

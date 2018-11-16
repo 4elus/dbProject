@@ -1,0 +1,9 @@
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Release\WindowsFormsApplication.exe.config
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Release\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Release\WindowsFormsApplication.pdb
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.Form1.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.Properties.Resources.resources
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.csproj.GenerateResource.Cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.exe
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Release\WindowsFormsApplication.pdb
