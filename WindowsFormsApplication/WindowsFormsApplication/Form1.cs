@@ -85,63 +85,9 @@ namespace WindowsFormsApplication
             add.Show();
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-             //Объект документа пдф
-            iTextSharp.text.Document doc =new iTextSharp.text.Document();
- 
-            //Создаем объект записи пдф-документа в файл
-            PdfWriter.GetInstance(doc, new FileStream("pdfTables.pdf", FileMode.Create));
- 
-            //Открываем документ
-            doc.Open();
- 
-            //Определение шрифта необходимо для сохранения кириллического текста
-            BaseFont baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
- 
-            //Обход по всем таблицам датасета 
-            for(int i = 0;i< ds.Tables.Count;i++)
-            {
-                //Создаем объект таблицы и передаем в нее число столбцов таблицы из нашего датасета
-                PdfPTable table =new PdfPTable(ds.Tables[i].Columns.Count);
- 
-                //Добавим в таблицу общий заголовок
-                PdfPCell cell = new PdfPCell(new Phrase("БД Tasks", font));
- 
-                cell.Colspan = ds.Tables[i].Columns.Count;
-                cell.HorizontalAlignment = 1;
-                //Убираем границу первой ячейки, чтобы балы как заголовок
-                cell.Border = 0;
-                table.AddCell(cell);
- 
-                //Сначала добавляем заголовки таблицы
-                for(int j = 0; j< ds.Tables[i].Columns.Count;j++)
-                {
-                    cell = new PdfPCell(new Phrase(new Phrase(ds.Tables[i].Columns[j].ColumnName, font)));
-                    //Фоновый цвет (необязательно, просто сделаем по красивее)
-                    cell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
-                    table.AddCell(cell);
-                }
- 
-                //Добавляем все остальные ячейки
-                for(int j = 0; j< ds.Tables[i].Rows.Count;j++)
-                {
-                    for(int k = 0; k< ds.Tables[i].Columns.Count;k++)
-                    {
-                        table.AddCell(new Phrase(ds.Tables[i].Rows[j][k].ToString(), font));
-                    }
-                }
-                //Добавляем таблицу в документ
-                doc.Add(table);
-            }
-            //Закрываем документ
-            doc.Close();
- 
-            MessageBox.Show("Pdf-документ сохранен");
-        }
+       
 
-        private void method() {
+       /* private void method() {
             //Creating iTextSharp Table from the DataTable data
             PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
             pdfTable.DefaultCell.Padding = 3;
@@ -167,7 +113,7 @@ namespace WindowsFormsApplication
                 }
             }
         
-        }
+        }*/
 
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -232,6 +178,12 @@ namespace WindowsFormsApplication
             }
             else
                 Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormExport export = new FormExport(dataGridView1, ds);
+            export.Show();
         }
        
     }

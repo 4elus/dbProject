@@ -14,3 +14,4 @@ C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp
 C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xml
 C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
 C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.ResolveComReference.cache
+C:\С#\proj\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
