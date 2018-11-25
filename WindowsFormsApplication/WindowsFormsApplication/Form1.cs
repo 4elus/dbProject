@@ -25,6 +25,7 @@ namespace WindowsFormsApplication
         private SQLiteConnection db;
         private SQLiteCommand com;
         private DataSet ds;
+        private List<int> list = new List<int>();
 
         public Form1()
         {
@@ -32,9 +33,16 @@ namespace WindowsFormsApplication
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            //DataGridViewCell.Style.WrapMode = DataGridViewTriState.True;
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             
            connectDB();
            outputData();
+           loadToolTip();
+           dataGridView1.Columns.RemoveAt(3);
+           
         }
 
         // =============================================== МЕТОД ПОДКЛЮЧЕНИЯ К БД  ===============================================
@@ -46,31 +54,26 @@ namespace WindowsFormsApplication
         // =============================================== ВЫВОД ДАННЫХ ИЗ БД  ===============================================
         private void outputData() {
             string query = "SELECT * FROM Tasks";
-
+            
             ds = new DataSet();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, db);
             adapter.Fill(ds, "Tasks");
 
             dataGridView1.DataSource = ds;
             dataGridView1.DataMember = "Tasks";
-            //dataGridView1.Columns.RemoveAt(1);
-            /*com = new SQLiteCommand(query, db);
-            
+         
+        }
+
+        private void loadToolTip() {
+            com = new SQLiteCommand("SELECT tags FROM Tasks", db);
             SQLiteDataReader reader = com.ExecuteReader();
-            List<string[]> data = new List<string[]>();
 
-            while(reader.Read()){
-                data.Add(new string[3]);
-
-                data[data.Count - 1][0] = reader[0].ToString();
-                data[data.Count - 1][1] = reader[1].ToString();
-                data[data.Count - 1][2] = reader[2].ToString();
+            int i = 0;
+            while (reader.Read()) {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                    dataGridView1.Rows[i].Cells[j].ToolTipText = reader[0].ToString();
+                i++;
             }
-            reader.Close();
-
-            foreach(string[] el in data){
-                dataGridView1.Rows.Add(el);
-            }*/
         }
 
         // =============================================== ПРИ ЗАКРЫТИИ ФОРМЫ ОТКЛЮЧАЕМСЯ ОТ БД  ===============================================
@@ -182,9 +185,30 @@ namespace WindowsFormsApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormExport export = new FormExport(dataGridView1, ds);
+            FormExport export = new FormExport(dataGridView1, ds, db, list);
             export.Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                MessageBox.Show(dataGridView1.CurrentCell.Value.ToString());
+            }
+            else if (e.ColumnIndex == 0)
+            {
+                list.Add(Int32.Parse(dataGridView1.CurrentCell.Value.ToString()));
+            }
+            //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+           
+        }
+
+       
        
     }
 }

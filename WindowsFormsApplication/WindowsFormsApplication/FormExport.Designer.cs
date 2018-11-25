@@ -31,6 +31,8 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.radioBtnPDF = new System.Windows.Forms.RadioButton();
             this.radioBtnWord = new System.Windows.Forms.RadioButton();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExport
@@ -69,19 +71,30 @@
             this.radioBtnWord.Text = "Word";
             this.radioBtnWord.UseVisualStyleBackColor = true;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(110, 43);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView2.TabIndex = 3;
+            // 
             // FormExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(295, 288);
+            this.ClientSize = new System.Drawing.Size(384, 288);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.radioBtnWord);
             this.Controls.Add(this.radioBtnPDF);
             this.Controls.Add(this.btnExport);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormExport";
             this.Text = "Экспорт";
+            this.Load += new System.EventHandler(this.FormExport_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +105,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.RadioButton radioBtnPDF;
         private System.Windows.Forms.RadioButton radioBtnWord;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
