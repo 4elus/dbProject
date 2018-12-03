@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
-using iTextSharp;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+//using iTextSharp;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
 using System.IO;
 using System.Data.OleDb;
 using System.Reflection;
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication
            outputData();
            loadToolTip();
            dataGridView1.Columns.RemoveAt(3);
-           
+           dataGridView1.Columns.RemoveAt(4);
         }
 
         // =============================================== МЕТОД ПОДКЛЮЧЕНИЯ К БД  ===============================================
@@ -205,10 +205,79 @@ namespace WindowsFormsApplication
                 list.Add(Int32.Parse(dataGridView1.CurrentCell.Value.ToString()));
             }
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+            int id = Int32.Parse(dataGridView1["id", dataGridView1.CurrentRow.Index].Value.ToString());
+
+            string query = "SELECT photo FROM Tasks WHERE id=" + id;
+            
            
+            SQLiteCommand cmd = new SQLiteCommand(query, db);
+
+            try
+            {
+                IDataReader rdr = cmd.ExecuteReader();
+                try
+                {
+                    while (rdr.Read())
+                    {
+                        byte[] a = (System.Byte[])rdr[0];
+                        pictBoxViewImage.Image = ByteToImage(a);
+                    }
+                }
+                catch (Exception exc) { MessageBox.Show(exc.Message); }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
         }
 
-       
-       
+        private void btnDownloadImage_Click(object sender, EventArgs e)
+        {
+            // Получаем id 
+            int id = Int32.Parse(dataGridView1["id", dataGridView1.CurrentRow.Index].Value.ToString());
+
+
+            if (id != null || id != 0)
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                    MemoryStream ms = new MemoryStream();
+                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] buf = ms.ToArray();
+
+                    //com = new SQLiteCommand("UPDATE Tasks SET photo = " + buf + " WHERE id = " + id, db);
+                    //com.ExecuteNonQuery();
+
+                   
+                    SQLiteCommand cmd = new SQLiteCommand("UPDATE Tasks SET photo = @photo  WHERE id = " + id, db);
+                    cmd.Parameters.Add("@photo", DbType.Binary, 8000).Value = buf;
+                    cmd.ExecuteNonQuery();
+
+                    /*
+                     command.CommandText =
+                    "update Example set Info = :info, Text = :text where ID=:id";
+                command.Parameters.Add("info", DbType.String).Value = textBox2.Text; 
+                command.Parameters.Add("text", DbType.String).Value = textBox3.Text; 
+                command.Parameters.Add("id", DbType.String).Value = textBox1.Text; 
+                command.ExecuteNonQuery();
+                     */
+                }
+            }
+            else {
+                MessageBox.Show("Выберите ячейку !");
+            }
+        }
+
+        public Image ByteToImage(byte[] imageBytes) {
+            // Convert byte[] to Image
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            Image image = new Bitmap(ms);
+            return image;
+        }
+
+
     }
 }

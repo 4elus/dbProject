@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.pictBoxViewImage = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -38,11 +40,14 @@
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDownloadImage = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictBoxViewImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -52,6 +57,8 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.Controls.Add(this.pictBoxViewImage);
+            this.panelHeader.Controls.Add(this.pictureBox1);
             this.panelHeader.Controls.Add(this.groupBox1);
             this.panelHeader.Controls.Add(this.txtBoxSearch);
             this.panelHeader.Controls.Add(this.btnSearch);
@@ -61,6 +68,25 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1068, 110);
             this.panelHeader.TabIndex = 0;
+            // 
+            // pictBoxViewImage
+            // 
+            this.pictBoxViewImage.Location = new System.Drawing.Point(910, 12);
+            this.pictBoxViewImage.Name = "pictBoxViewImage";
+            this.pictBoxViewImage.Size = new System.Drawing.Size(125, 92);
+            this.pictBoxViewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictBoxViewImage.TabIndex = 5;
+            this.pictBoxViewImage.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(910, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(125, 92);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // groupBox1
             // 
@@ -138,6 +164,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDownloadImage);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.btnDelete);
@@ -147,6 +174,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 347);
             this.panel1.TabIndex = 2;
+            // 
+            // btnDownloadImage
+            // 
+            this.btnDownloadImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownloadImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnDownloadImage.FlatAppearance.BorderSize = 0;
+            this.btnDownloadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownloadImage.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDownloadImage.ForeColor = System.Drawing.Color.White;
+            this.btnDownloadImage.Location = new System.Drawing.Point(42, 281);
+            this.btnDownloadImage.Name = "btnDownloadImage";
+            this.btnDownloadImage.Size = new System.Drawing.Size(134, 54);
+            this.btnDownloadImage.TabIndex = 7;
+            this.btnDownloadImage.Text = "Загрузить фотографию";
+            this.btnDownloadImage.UseVisualStyleBackColor = false;
+            this.btnDownloadImage.Click += new System.EventHandler(this.btnDownloadImage_Click);
             // 
             // button1
             // 
@@ -225,6 +268,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictBoxViewImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).EndInit();
@@ -249,6 +294,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDownloadImage;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictBoxViewImage;
     }
 }
 
