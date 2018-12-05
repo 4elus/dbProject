@@ -16,6 +16,7 @@ using System.IO;
 using System.Data.OleDb;
 using System.Reflection;
 using ExcelObj = Microsoft.Office.Interop.Excel;
+using Microsoft.VisualBasic;
 
 namespace WindowsFormsApplication
 {
@@ -26,6 +27,9 @@ namespace WindowsFormsApplication
         private SQLiteCommand com;
         private DataSet ds;
         private List<int> list = new List<int>();
+
+
+        private DataGridView dataGridViewComments;
 
         public Form1()
         {
@@ -42,7 +46,7 @@ namespace WindowsFormsApplication
            outputData();
            loadToolTip();
            dataGridView1.Columns.RemoveAt(3);
-           dataGridView1.Columns.RemoveAt(4);
+          //dataGridView1.Columns.RemoveAt(4);
         }
 
         // =============================================== МЕТОД ПОДКЛЮЧЕНИЯ К БД  ===============================================
@@ -61,7 +65,6 @@ namespace WindowsFormsApplication
 
             dataGridView1.DataSource = ds;
             dataGridView1.DataMember = "Tasks";
-         
         }
 
         private void loadToolTip() {
@@ -179,8 +182,10 @@ namespace WindowsFormsApplication
                 dataGridView1.DataSource = dt;
                 app.Quit();
             }
-            else
-                Application.Exit();
+            
+            // Ищем оставшиеся файлы
+            string path = Path.GetDirectoryName(ofd.FileName);
+            DirSearch(path);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -196,9 +201,25 @@ namespace WindowsFormsApplication
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            int id = Int32.Parse(dataGridView1["id", dataGridView1.CurrentRow.Index].Value.ToString());
+
             if (e.ColumnIndex == 2)
             {
-                MessageBox.Show(dataGridView1.CurrentCell.Value.ToString());
+                string que = "SELECT text FROM Comments WHERE code_tasks=" + id;
+                SQLiteCommand com = new SQLiteCommand(que, db);
+
+                IDataReader read = com.ExecuteReader();
+
+                string res = "";
+
+                while (read.Read()) {
+                    res += read.GetValue(0).ToString() + "\n";
+                }
+
+                read.Close();
+
+             
+                MessageBox.Show(dataGridView1.CurrentCell.Value.ToString() + "\n\n" + res);
             }
             else if (e.ColumnIndex == 0)
             {
@@ -206,7 +227,7 @@ namespace WindowsFormsApplication
             }
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
 
-            int id = Int32.Parse(dataGridView1["id", dataGridView1.CurrentRow.Index].Value.ToString());
+            
 
             string query = "SELECT photo FROM Tasks WHERE id=" + id;
             
@@ -224,9 +245,9 @@ namespace WindowsFormsApplication
                         pictBoxViewImage.Image = ByteToImage(a);
                     }
                 }
-                catch (Exception exc) { MessageBox.Show(exc.Message); }
+                catch (Exception exc) { /*MessageBox.Show(exc.Message);*/ }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { /*MessageBox.Show(ex.Message);*/ }
 
         }
 
@@ -278,6 +299,123 @@ namespace WindowsFormsApplication
             return image;
         }
 
+        private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) {
+                int id = Int32.Parse(dataGridView1["id", dataGridView1.CurrentRow.Index].Value.ToString());
+                var comment = Interaction.InputBox("Message", "Title", "", -1, -1);
 
+
+                SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Comments(code_tasks, text) VALUES(@code, @txt)", db);
+                cmd.Parameters.Add("@code", DbType.UInt32).Value = id;
+                cmd.Parameters.Add("@txt", DbType.String).Value = comment.ToString();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        void DirSearch(string sDir)
+        {
+            try
+            {
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+
+                   // MessageBox.Show(d);
+
+                    DirectoryInfo directory = new DirectoryInfo(d);
+                    FileInfo[] files = directory.GetFiles();
+
+                    var filtered = files.Select(f => f)
+                                        .Where(f => (f.Attributes & FileAttributes.Hidden) == 0);
+
+                    foreach (var f in filtered)
+                    {
+                        string name = Path.GetFileNameWithoutExtension(f.FullName);
+                        if (name.Equals("comments")) {
+                            findItherFiles(f.FullName);
+                            
+                        }
+                        
+                    }
+                    DirSearch(d);
+                }
+
+            }
+            catch (System.Exception)
+            {
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+
+            if (dataGridViewComments == null)
+            {
+                FormComments comments = new FormComments(db);
+                comments.Show();
+            }
+            else {
+                FormComments comments = new FormComments(db, dataGridViewComments);
+                comments.Show();
+            }
+
+        }
+
+
+        private void findItherFiles(string ofd) {
+            
+            ExcelObj.Application app = new ExcelObj.Application();
+            ExcelObj.Workbook workbook;
+            ExcelObj.Worksheet NwSheet;
+            ExcelObj.Range ShtRange;
+            DataTable dt = new DataTable();
+           
+                //textBox1.Text = ofd.FileName;
+
+                workbook = app.Workbooks.Open(ofd, Missing.Value,
+                Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                Missing.Value);
+
+                //Устанавливаем номер листа из котрого будут извлекаться данные
+                //Листы нумеруются от 1
+                NwSheet = (ExcelObj.Worksheet)workbook.Sheets.get_Item(1);
+                ShtRange = NwSheet.UsedRange;
+                for (int Cnum = 1; Cnum <= ShtRange.Columns.Count; Cnum++)
+                {
+                    dt.Columns.Add(
+                       new DataColumn((ShtRange.Cells[1, Cnum] as ExcelObj.Range).Value2.ToString()));
+                }
+                dt.AcceptChanges();
+
+                string[] columnNames = new String[dt.Columns.Count];
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    columnNames[0] = dt.Columns[i].ColumnName;
+                }
+
+                for (int Rnum = 2; Rnum <= ShtRange.Rows.Count; Rnum++)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int Cnum = 1; Cnum <= ShtRange.Columns.Count; Cnum++)
+                    {
+                        if ((ShtRange.Cells[Rnum, Cnum] as ExcelObj.Range).Value2 != null)
+                        {
+                            dr[Cnum - 1] =
+                (ShtRange.Cells[Rnum, Cnum] as ExcelObj.Range).Value2.ToString();
+                        }
+                    }
+                    dt.Rows.Add(dr);
+                    dt.AcceptChanges();
+                }
+                dataGridViewComments = new DataGridView();
+                dataGridView2.DataSource = dt;
+                dataGridViewComments.DataSource = dataGridView2.DataSource;
+                app.Quit();
+        }
     }
 }

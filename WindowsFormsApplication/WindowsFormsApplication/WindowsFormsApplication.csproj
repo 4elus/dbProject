@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -96,6 +97,12 @@
     <Compile Include="FormAdd.Designer.cs">
       <DependentUpon>FormAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComments.Designer.cs">
+      <DependentUpon>FormComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdd.resx">
       <DependentUpon>FormAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComments.resx">
+      <DependentUpon>FormComments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExport.resx">
       <DependentUpon>FormExport.cs</DependentUpon>

@@ -32,3 +32,4 @@ C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsAppl
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormComments.resources
