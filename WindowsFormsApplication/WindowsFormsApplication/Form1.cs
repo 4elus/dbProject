@@ -40,7 +40,7 @@ namespace WindowsFormsApplication
             //DataGridViewCell.Style.WrapMode = DataGridViewTriState.True;
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             
            connectDB();
            outputData();
@@ -416,6 +416,43 @@ namespace WindowsFormsApplication
                 dataGridView2.DataSource = dt;
                 dataGridViewComments.DataSource = dataGridView2.DataSource;
                 app.Quit();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string elec = "";
+            string mech = "";
+
+            if (checkBoxElec.Checked) {
+                elec = checkBoxElec.Text;
+            }
+            if (checkBoxMech.Checked) {
+                mech = checkBoxMech.Text;
+            }
+
+            string selectString = "";
+
+            // string selectString = "address Like '%" + txtBoxFind.Text.Trim() + "%' and description_object Like '%" + txtBoxFindDesc.Text.Trim() + "%' and floor Like '%" + txtBoxFindFloor.Text.Trim() + "%' and price  Like '%" + txtBoxFindPrice.Text.Trim() + "%'";
+
+            if (elec.Equals("") && mech.Equals(""))
+            {
+                selectString = "SELECT * FROM Tasks WHERE desc_short LIKE '" + txtBoxSearch.Text + "%';";
+            }
+            else {
+                selectString = "SELECT * FROM Tasks WHERE category LIKE '" + mech + "' OR category LIKE '" + elec + "' AND desc_short LIKE '" + txtBoxSearch.Text + "%'";
+            }
+
+            ds = new DataSet();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(selectString, db);
+            adapter.Fill(ds, "Tasks");
+
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "Tasks";
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            outputData();
         }
     }
 }

@@ -33,20 +33,21 @@
             this.pictBoxViewImage = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxMech = new System.Windows.Forms.CheckBox();
+            this.checkBoxElec = new System.Windows.Forms.CheckBox();
             this.txtBoxSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnDownloadImage = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnLoadData = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxViewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,6 +61,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.Controls.Add(this.btnLoadData);
             this.panelHeader.Controls.Add(this.pictBoxViewImage);
             this.panelHeader.Controls.Add(this.pictureBox1);
             this.panelHeader.Controls.Add(this.groupBox1);
@@ -93,8 +95,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.checkBoxMech);
+            this.groupBox1.Controls.Add(this.checkBoxElec);
             this.groupBox1.Location = new System.Drawing.Point(555, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(169, 101);
@@ -102,25 +104,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Категории";
             // 
-            // checkBox2
+            // checkBoxMech
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 59);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(112, 25);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Механика";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxMech.AutoSize = true;
+            this.checkBoxMech.Location = new System.Drawing.Point(7, 59);
+            this.checkBoxMech.Name = "checkBoxMech";
+            this.checkBoxMech.Size = new System.Drawing.Size(112, 25);
+            this.checkBoxMech.TabIndex = 1;
+            this.checkBoxMech.Text = "Механика";
+            this.checkBoxMech.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxElec
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(146, 25);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Электричество";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxElec.AutoSize = true;
+            this.checkBoxElec.Location = new System.Drawing.Point(7, 28);
+            this.checkBoxElec.Name = "checkBoxElec";
+            this.checkBoxElec.Size = new System.Drawing.Size(146, 25);
+            this.checkBoxElec.TabIndex = 0;
+            this.checkBoxElec.Text = "Электричество";
+            this.checkBoxElec.UseVisualStyleBackColor = true;
             // 
             // txtBoxSearch
             // 
@@ -142,6 +144,7 @@
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // picBoxLogo
             // 
@@ -179,6 +182,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 347);
             this.panel1.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(181)))), ((int)(((byte)(0)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(54, 231);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 33);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Показать комментарии";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnDownloadImage
             // 
@@ -259,29 +278,30 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(181)))), ((int)(((byte)(0)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(54, 231);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 33);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Показать комментарии";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(250, 3);
+            this.dataGridView2.Location = new System.Drawing.Point(0, 116);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(10, 10);
             this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.Visible = false;
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(225)))), ((int)(((byte)(0)))));
+            this.btnLoadData.FlatAppearance.BorderSize = 0;
+            this.btnLoadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnLoadData.ForeColor = System.Drawing.Color.White;
+            this.btnLoadData.Location = new System.Drawing.Point(150, 62);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(98, 33);
+            this.btnLoadData.TabIndex = 9;
+            this.btnLoadData.Text = "Обновить";
+            this.btnLoadData.UseVisualStyleBackColor = false;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
             // 
             // Form1
             // 
@@ -320,8 +340,8 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtBoxSearch;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxMech;
+        private System.Windows.Forms.CheckBox checkBoxElec;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button button1;
@@ -330,6 +350,7 @@
         private System.Windows.Forms.PictureBox pictBoxViewImage;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnLoadData;
     }
 }
 
