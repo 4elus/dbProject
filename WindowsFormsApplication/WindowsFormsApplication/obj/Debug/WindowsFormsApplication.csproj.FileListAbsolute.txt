@@ -28,8 +28,8 @@ C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\System.Data.SQLi
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\itextsharp.xml
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Form1.resources
-C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormAdd.resources
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormExport.resources
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
 C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormComments.resources
+C:\DB\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.FormDetailView.resources

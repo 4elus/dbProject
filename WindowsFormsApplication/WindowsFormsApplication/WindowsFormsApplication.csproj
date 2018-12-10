@@ -91,17 +91,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdd.Designer.cs">
-      <DependentUpon>FormAdd.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormComments.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormComments.Designer.cs">
       <DependentUpon>FormComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetailView.Designer.cs">
+      <DependentUpon>FormDetailView.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExport.cs">
       <SubType>Form</SubType>
@@ -114,11 +114,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAdd.resx">
-      <DependentUpon>FormAdd.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormComments.resx">
       <DependentUpon>FormComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDetailView.resx">
+      <DependentUpon>FormDetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExport.resx">
       <DependentUpon>FormExport.cs</DependentUpon>
